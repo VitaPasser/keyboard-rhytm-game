@@ -1,6 +1,4 @@
 ﻿using SFML.Audio;
-using System.Threading.Tasks.Sources;
-using static SFML.Window.Keyboard;
 
 namespace keyboard_rhytm_game
 {
