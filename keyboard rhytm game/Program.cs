@@ -22,7 +22,7 @@ namespace keyboard_rhytm_game
 
         static async Task Main(string[] args)
         {
-            Console.WriteLine("keyboard rhytm game 0.1");
+            Console.WriteLine("keyboard rhytm game 0.1.1");
             Music music = new("music1.wav");
 
             Object[][] keyDoNeedPress = new Object[8][];
@@ -174,10 +174,10 @@ namespace keyboard_rhytm_game
             do
             {
                 int key = 0;
-                key = (int)Console.ReadKey(true).Key;
-                Console.Write((char)(key + 32));
+                key = (int)Console.ReadKey(true).Key; 
                 if (key >= 65 && key <= 90)
                 {
+                    Console.Write((char)(key + 32));
                     GlobalVariable.litteral = (char)key;
                 }
 
@@ -199,7 +199,7 @@ namespace keyboard_rhytm_game
             await Task.WhenAny(GlobalVariable.asa(), func22);
             //await func11;
 
-            Console.WriteLine(GlobalVariable.score);
+            Console.WriteLine($"Score: {GlobalVariable.score}");
             Console.WriteLine($"{GlobalVariable.score / 2400M * 100}%" );
             Console.Read();
         }
