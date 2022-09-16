@@ -1,6 +1,6 @@
 ﻿using SFML.Audio;
 
-namespace keyboard_rhytm_game
+namespace KeyboardRhytmGame
 {
     internal class Program
     {
@@ -39,22 +39,6 @@ namespace keyboard_rhytm_game
                 }
                 keyDoNeedPress[i][2] = 1;
             }
-
-            //music.Loop = true;
-
-
-            Func<Task> func1 = async () =>
-            {
-                do
-                {
-                    if (music.Status != SoundStatus.Paused)
-                        //Console.WriteLine(music.PlayingOffset.AsMilliseconds());
-                        await Task.Delay(1);
-
-                } while (music.Status != SoundStatus.Stopped);
-            };
-
-
 
             async Task func3(Object[] key, int index)
             {
@@ -125,25 +109,6 @@ namespace keyboard_rhytm_game
                 GlobalVariable.turnNow++;
             }
 
-            /*
-            Func<Task> func3 = async () =>
-            {
-                foreach (var key in keyDoNeedPress)
-                {
-                    int timeToNext = (int)key[1] * 1000,
-                        timeToEnd = (int)key[2] * 1000,
-                        start = music.PlayingOffset.AsMilliseconds(),
-                        endNext = start + timeToEnd;
-                    do
-                    {
-                        await Task.Delay(endNext - music.PlayingOffset.AsMilliseconds());
-                    } while (music.PlayingOffset.AsMilliseconds() < endNext);
-                    Console.WriteLine($"{key[0]} - Not");
-                }
-
-            };
-            */
-
             Func<Task> func2 = async () =>
             {
                 int index = 0;
@@ -165,7 +130,6 @@ namespace keyboard_rhytm_game
 
 
             music.Play();
-            //var func11 = func1();
             var func22 = func2();
 
 
@@ -173,7 +137,7 @@ namespace keyboard_rhytm_game
             {
                 int key = 0;
                 key = (int)Console.ReadKey(true).Key; 
-                if (key >= 65 && key <= 90)
+                if (key >= 65 && key <= 90 && SoundStatus.Playing == music.Status)
                 {
                     Console.Write((char)(key + 32));
                     GlobalVariable.litteral = (char)key;
@@ -190,12 +154,7 @@ namespace keyboard_rhytm_game
 
             } while (music.Status != SoundStatus.Stopped);
 
-            /*
-            await GlobalVariable.asa();
-            await func22;
-            */
             await Task.WhenAny(GlobalVariable.asa(), func22);
-            //await func11;
 
             Console.WriteLine($"Score: {GlobalVariable.score}");
             Console.WriteLine($"{GlobalVariable.score / 2400M * 100}%" );
