@@ -23,7 +23,7 @@ namespace keyboard_rhytm_game
         static async Task Main(string[] args)
         {
             Console.WriteLine("keyboard rhytm game 0.1");
-            Music music = new("Let_s-Live-in-a-Lovely-Cemetery-only-begin.wav");
+            Music music = new("music1.wav");
 
             Object[][] keyDoNeedPress = new Object[8][];
             char literal = 'A';
